@@ -92,18 +92,19 @@
 		}
     </style>
     <script>
-        let a = [
-            {'name' : '영수', 'age' : 27},
-            {'name' : '철수', 'age' : 15},
-            {'name' : '영희', 'age' : 20}
-        ]
-        console.log(a[2]['name'])
+        $(document).ready(function() {
+            fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then(res => res.json()).then(data => {
+                let num = data['temp']
+                $('#temp').text(num)
+            })
+        })
     </script>
 </head>
 
 <body>
     <div class="mytitle">
-        <h1>내 생애 최고의 영화들</h1>
+        <h1>내 생애 최고의 영화들!</h1>
+        <div>현재 서울의 날씨 : <span id="temp">20</span>도</div>
         <button onclick="hey()">영화 기록하기</button>
     </div>
 	<div class="mypost">

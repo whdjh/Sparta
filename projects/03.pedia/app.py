@@ -1,12 +1,13 @@
+#활성화 명령어: source venv/bin/activate
+
 from flask import Flask, render_template, request, jsonify
-app = Flask(__name__)
-
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.1spozhb.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbsparta
-
 import requests
 from bs4 import BeautifulSoup
+
+app = Flask(__name__)
+client = MongoClient('mongodb+srv://sparta:test@cluster0.1spozhb.mongodb.net/?retryWrites=true&w=majority')
+db = client.dbsparta
 
 @app.route('/')
 def home():
@@ -18,6 +19,7 @@ def movie_post():
 	comment_receive = request.form['comment_give']
 	star_receice = request.form['star_give']
  
+	#meta태그관련
 	headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 	data = requests.get(url_receive, headers=headers)
 
